@@ -77,8 +77,9 @@ class Browser:
         driver = webdriver.Chrome(
             options=options,
             seleniumwire_options=seleniumwireOptions,
-            user_data_dir=self.userDataDir.as_posix(),
-        )
+            driver_executable_path="/home/pfefan/.local/share/undetected_chromedriver/chromedriver_copy", 
+            version_main=120,
+        ) 
 
         seleniumLogger = logging.getLogger("seleniumwire")
         seleniumLogger.setLevel(logging.ERROR)

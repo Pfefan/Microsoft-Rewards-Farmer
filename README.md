@@ -10,7 +10,7 @@
 ██║╚██╔╝██║╚════██║    ██╔══╝  ██╔══██║██╔══██╗██║╚██╔╝██║██╔══╝  ██╔══██╗
 ██║ ╚═╝ ██║███████║    ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗██║  ██║
 ╚═╝     ╚═╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
-       by Charles Bel (@charlesbel)          version 3.0
+       by Charles Bel (@charlesbel)   modified by Pfefan    version 3.0
 ```
 
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)
@@ -18,29 +18,33 @@
 
 ## :wave: Welcome to the future of automation
 
-### A simple bot that uses selenium to farm Microsoft Rewards written in Python
+### A simple bot that uses selenium to farm Microsoft Rewards written in Python modified to work on a Raspberry
 
 ```diff
 - Use it at your own risk, Microsoft may ban your account (and I would not be responsible for it)
 ```
 
 ## Installation
+1. Create a venv:
 
-1. Install requirements with the following command :
+   `python3 -m venv venv`
+2. Install requirements with the following command :
 
    `pip install -r requirements.txt`
 
-2. Make sure you have Chrome installed
+3. Install chrome
+   - install chromedriver
+   `sudo apt install chromium-chromedriver`
+   - Copying chromedriver 
+   `cp /usr/bin/chromedriver /home/myuser/.local/share/undetected_chromedriver/chromedriver_copy`
+   - replace the name pfefan with your username in 'browser.py' on line 80
+   `driver_executable_path="/home/myuser/.local/share/undetected_chromedriver/chromedriver_copy",`
 
-3. ~~Install ChromeDriver:~~
+4. ~~Install ChromeDriver:~~
 
    You no longer need to do this step since selenium >=4.10.0 include a webdriver manager
 
    To update your selenium version, run this command : `pip install selenium --upgrade`
-
-4. (Windows Only) Make sure Visual C++ redistributable DLLs are installed
-
-   If they're not, install the current "vc_redist.exe" from this link and reboot your computer : https://learn.microsoft.com/en-GB/cpp/windows/latest-supported-vc-redist?view=msvc-170
 
 5. Edit the `accounts.json.sample` with your accounts credentials and rename it by removing `.sample` at the end. The "proxy" field is not mandatory, you can ommit it if you don't want to use proxy (don't keep it as an empty string, remove it completely).
 

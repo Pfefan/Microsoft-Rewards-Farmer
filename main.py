@@ -4,6 +4,7 @@ import logging
 import logging.handlers as handlers
 import random
 import sys
+import os
 from pathlib import Path
 
 from src import Browser, DailySet, Login, MorePromotions, PunchCards, Searches
@@ -31,6 +32,9 @@ def setupLogging():
     terminalHandler = logging.StreamHandler(sys.stdout)
     terminalHandler.setFormatter(ColoredFormatter(format))
 
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    log_path = os.path.join(script_dir, "logs", "activity.log")
+
     (Path(__file__).resolve().parent / "logs").mkdir(parents=True, exist_ok=True)
 
     logging.basicConfig(
@@ -38,7 +42,7 @@ def setupLogging():
         format=format,
         handlers=[
             handlers.TimedRotatingFileHandler(
-                "logs/activity.log",
+                log_path,
                 when="midnight",
                 interval=1,
                 backupCount=2,
