@@ -65,6 +65,12 @@ class Browser:
         options.add_argument("--ignore-certificate-errors-spki-list")
         options.add_argument("--ignore-ssl-errors")
 
+        options.add_argument("enable-automation")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--dns-prefetch-disable")
+        options.add_argument("--disable-gpu")
+
         seleniumwireOptions: dict[str, Any] = {"verify_ssl": False}
 
         if self.proxy:
@@ -79,6 +85,8 @@ class Browser:
             seleniumwire_options=seleniumwireOptions,
             driver_executable_path="/home/pfefan/.local/share/undetected_chromedriver/chromedriver_copy", 
             version_main=120,
+            enable_cdp_events=True, 
+            headless=True
         ) 
 
         seleniumLogger = logging.getLogger("seleniumwire")
